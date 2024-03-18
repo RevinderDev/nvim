@@ -1,5 +1,3 @@
--- File: lua/custom/plugins/filetree.lua
-
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
@@ -9,6 +7,7 @@ return {
     'MunifTanjim/nui.nvim',
   },
   config = function()
+    vim.keymap.set('n', '<leader>t', '<cmd>Neotree toggle<cr>')
     require('neo-tree').setup {}
   end,
 }
