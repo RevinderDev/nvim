@@ -8,6 +8,17 @@ return {
   },
   config = function()
     vim.keymap.set('n', '<leader>t', '<cmd>Neotree toggle<cr>')
-    require('neo-tree').setup {}
+    require('neo-tree').setup {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          never_show = {
+            '.git',
+            '.venv',
+          },
+        },
+      },
+    }
   end,
 }

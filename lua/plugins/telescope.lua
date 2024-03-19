@@ -39,7 +39,6 @@ return { -- fuzzy finder (files, lsp, etc)
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[s]earch [k]eymaps' })
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[s]earch [f]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[s]earch [s]elect telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[s]earch current [w]ord' })
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[s]earch by [g]rep' })
@@ -48,6 +47,11 @@ return { -- fuzzy finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
 
+    vim.keymap.set('n', '<leader>sf', function()
+      builtin.find_files {
+        find_command = { 'rg', '--files', '--hidden', '--glob', '!.git/*', '--glob', '!.venv/*', '--no-ignore-vcs' },
+      }
+    end, { desc = '[s]earch [f]iles including hidden and .gitignore, excluding .git/ and .venv/' })
     -- slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
       -- you can pass additional configuration to telescope to change theme, layout, etc.
