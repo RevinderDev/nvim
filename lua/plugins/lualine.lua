@@ -4,7 +4,7 @@ return {
   config = function()
     require('lualine').setup {
       include_icons = true,
-      theme = 'gruvbox',
+      theme = 'gruvbox-line',
     }
   end,
 }

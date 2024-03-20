@@ -15,10 +15,7 @@ return { -- autoformat
     formatters_by_ft = {
       lua = { 'stylua' },
       rust_analyzer = { 'rustfmt' },
-      -- TODO: Add proper support for python formatting
-      python = { 'ruff' },
-      -- conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
+      python = { 'isort', 'black' },
     },
   },
 }

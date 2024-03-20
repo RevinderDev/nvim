@@ -25,7 +25,7 @@ vim.keymap.set('n', '<down>', '<cmd>echo "use j to move!!"<cr>')
 --  use ctrl+<hjkl> to switch between windows
 --
 --  see `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<c-h>', '<c-w><c-h>', { desc = 'move focus to the left window' })
-vim.keymap.set('n', '<c-l>', '<c-w><c-l>', { desc = 'move focus to the right window' })
-vim.keymap.set('n', '<c-j>', '<c-w><c-j>', { desc = 'move focus to the lower window' })
-vim.keymap.set('n', '<c-k>', '<c-w><c-k>', { desc = 'move focus to the upper window' })
+vim.keymap.set('n', '<a-h>', '<c-w><c-h>', { desc = 'move focus to the left window' })
+vim.keymap.set('n', '<a-l>', '<c-w><c-l>', { desc = 'move focus to the right window' })
+vim.keymap.set('n', '<a-j>', '<c-w><c-j>', { desc = 'move focus to the lower window' })
+vim.keymap.set('n', '<a-k>', '<c-w><c-k>', { desc = 'move focus to the upper window' })

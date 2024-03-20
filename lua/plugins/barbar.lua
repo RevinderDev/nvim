@@ -11,9 +11,9 @@ return {
       local opts = { noremap = true, silent = true }
 
       -- Move to previous/next
-      map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-      map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-      map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+      map('n', '<A-1>', '<Cmd>BufferPrevious<CR>', opts)
+      map('n', '<A-2>', '<Cmd>BufferNext<CR>', opts)
+      map('n', '<A-q>', '<Cmd>BufferClose<CR>', opts)
     end,
     opts = {
       -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:

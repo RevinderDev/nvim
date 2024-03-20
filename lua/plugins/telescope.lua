@@ -49,7 +49,21 @@ return { -- fuzzy finder (files, lsp, etc)
 
     vim.keymap.set('n', '<leader>sf', function()
       builtin.find_files {
-        find_command = { 'rg', '--files', '--hidden', '--glob', '!.git/*', '--glob', '!.venv/*', '--no-ignore-vcs' },
+        find_command = {
+          'rg',
+          '--files',
+          '--hidden',
+          '--glob',
+          '!.git/*',
+          '--glob',
+          '!.venv/*',
+          '--glob',
+          '!.mypy_cache/*',
+          '--glob',
+          '!.pytest_cache/*',
+          '--glob',
+          '!__pycache__/*',
+        },
       }
     end, { desc = '[s]earch [f]iles including hidden and .gitignore, excluding .git/ and .venv/' })
     -- slightly advanced example of overriding default behavior and theme
