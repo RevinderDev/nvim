@@ -10,6 +10,7 @@ return {
     vim.keymap.set('n', '<leader>t', '<cmd>Neotree toggle<cr>')
     vim.keymap.set('n', '<C-e>', '<cmd>Neotree toggle<cr>')
     require('neo-tree').setup {
+      popup_border_style = 'rounded',
       window = {
         position = 'right',
         width = 30,
