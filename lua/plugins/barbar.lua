@@ -13,7 +13,7 @@ return {
       -- Move to previous/next
       map('n', '<A-1>', '<Cmd>BufferPrevious<CR>', opts)
       map('n', '<A-2>', '<Cmd>BufferNext<CR>', opts)
-      map('n', '<A-q>', '<Cmd>BufferClose<CR>', opts)
+      --[[ map('n', '<A-q>', '<Cmd>BufferClose<CR>', opts) ]]
     end,
     opts = {
       no_name_title = nil,

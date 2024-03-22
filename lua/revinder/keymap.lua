@@ -1,6 +1,6 @@
 vim.keymap.set('n', '<esc>', '<cmd>nohlsearch<cr>')
 vim.keymap.set('n', '<C-s>', ':w<cr>') -- save
-vim.keymap.set('n', '<C-q>', ':q<cr>') -- quit current buffer
+vim.keymap.set('n', '<C-S-q>', ':q<cr>')
 -- diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'go to previous [d]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'go to next [d]iagnostic message' })
