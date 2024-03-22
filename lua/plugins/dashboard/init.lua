@@ -117,12 +117,13 @@ local function configure_layout()
       opts = {},
     }
   end
+
   local banner = {
     type = 'text',
     val = require('plugins.dashboard.banners').dashboard(),
     opts = {
       position = 'center',
-      hl = 'AlphaHeader',
+      hl = 'AlphaBanner',
     },
   }
   local section_mru = {

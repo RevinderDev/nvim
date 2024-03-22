@@ -14,6 +14,9 @@ return {
   priority = 1000,
   config = function()
     vim.cmd.colorscheme 'gruvbox-baby'
+    -- Dashboard colors
+    vim.cmd [[highlight AlphaBanner guifg=#eebd35]]
+    vim.cmd [[highlight AlphaHeaderLabel guifg=#E7D7AD]]
     -- NOTE: What were these for..
     --[[ vim.cmd.hi 'comment gui=none' ]]
     --[[ vim.cmd.hi 'clear signcolumn' ]]
