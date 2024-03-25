@@ -1,14 +1,3 @@
--- return {
---   'ellisonleao/gruvbox.nvim',
---   priority = 1000,
---   config = true,
---   opts = ...,
---   init = function()
---     vim.cmd.colorscheme 'gruvbox'
---     vim.cmd.hi 'comment gui=none'
---     vim.cmd.hi 'clear signcolumn'
---   end,
--- }
 return {
   'luisiacc/gruvbox-baby',
   priority = 1000,
@@ -17,6 +6,9 @@ return {
     -- Dashboard colors
     vim.cmd [[highlight AlphaBanner guifg=#eebd35]]
     vim.cmd [[highlight AlphaHeaderLabel guifg=#E7D7AD]]
+    -- Current line number color
+    vim.cmd [[highlight CursorLineNR guifg=#fabd2f]]
+
     -- NOTE: What were these for..
     --[[ vim.cmd.hi 'comment gui=none' ]]
     --[[ vim.cmd.hi 'clear signcolumn' ]]
