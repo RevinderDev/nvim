@@ -13,7 +13,7 @@ return {
       popup_border_style = 'rounded',
       window = {
         position = 'right',
-        width = 30,
+        width = 45,
       },
       filesystem = {
         follow_current_file = {

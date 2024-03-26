@@ -6,7 +6,18 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'go to previous [d]
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'go to next [d]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'show diagnostic [e]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'open diagnostic [q]uickfix list' })
-
+vim.diagnostic.config {
+  float = {
+    border = 'single',
+    focusable = true,
+    style = 'minimal',
+    source = 'always',
+    header = '',
+  },
+  underline = true,
+  update_in_insert = true,
+  severity_sort = true,
+}
 -- exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. otherwise, you normally need to press <c-\><c-n>, which
 -- is not what someone will guess without a bit more experience.
