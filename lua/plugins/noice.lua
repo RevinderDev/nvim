@@ -55,15 +55,24 @@ return {
         },
         opts = { skip = true },
       },
+      -- Show recording messages
+      {
+        view = 'notify',
+        filter = { event = 'msg_showmode' },
+      },
       {
         -- Hide "Written" messages
         filter = {
           event = 'msg_show',
-          kind = '',
           find = 'written',
         },
         opts = { skip = true },
       },
     },
+  },
+  dependencies = {
+    'folke/noice.nvim',
+    'MunifTanjim/nui.nvim',
+    'rcarriga/nvim-notify',
   },
 }
