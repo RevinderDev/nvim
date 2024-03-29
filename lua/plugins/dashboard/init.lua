@@ -258,7 +258,13 @@ return {
         local fallback_on_empty = fallback_name == '' and fallback_ft == ''
 
         if fallback_on_empty then
-          require('neo-tree').close_all()
+          local ok, _ = pcall(require, 'neo-tree')
+          if not ok then
+            vim.cmd 'packadd neo-tree'
+            -- Use the latest recommended approach to handle Neotree. See the docs for info:
+            -- https://github.com/nvim-neo-tree/neo-tree.nvim/blob/ab8ca9fac52949d7a741b538c5d9c3898cd0f45a/doc/neo-tree.txt#L140
+            vim.cmd 'Neotree close'
+          end
           vim.cmd 'Alpha'
           vim.cmd(event.buf .. 'bwipeout')
         end
