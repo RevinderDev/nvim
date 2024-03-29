@@ -34,7 +34,20 @@ return { -- autocompletion
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    {
+      'Saecki/crates.nvim',
+      event = { 'BufRead Cargo.toml' },
+      opts = {
+        src = {
+          cmp = { enabled = true },
+        },
+      },
+    },
   },
+  opts = function(_, opts)
+    opts.auto_brackets = opts.auto_brackets or {}
+    table.insert(opts.auto_brackets, 'python')
+  end,
   config = function()
     -- see `:help cmp`
     local cmp = require 'cmp'

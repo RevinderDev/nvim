@@ -14,6 +14,13 @@ return { -- lsp configuration & plugins
     -- used for completion, annotations and signatures of neovim apis
     { 'folke/neodev.nvim', opts = {} },
   },
+
+  -- See rustaceanvim.mason for explanation
+  setup = {
+    rust_analyzer = function()
+      return true
+    end,
+  },
   config = function()
     vim.api.nvim_create_autocmd('lspattach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -87,8 +94,21 @@ return { -- lsp configuration & plugins
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local servers = {
-      pyright = {},
-      rust_analyzer = {},
+      taplo = {
+        keys = {
+          {
+            'K',
+            function()
+              if vim.fn.expand '%:t' == 'Cargo.toml' and require('crates').popup_available() then
+                require('crates').show_popup()
+              else
+                vim.lsp.buf.hover()
+              end
+            end,
+            desc = 'Show Crate Documentation',
+          },
+        },
+      },
       lua_ls = {
         settings = {
           lua = {
@@ -98,8 +118,9 @@ return { -- lsp configuration & plugins
           },
         },
       },
+      pyright = {},
+      rust_analyzer = {},
     }
-
     require('mason').setup()
 
     local ensure_installed = vim.tbl_keys(servers or {})
@@ -108,12 +129,18 @@ return { -- lsp configuration & plugins
       -- Python related
       'black',
       'isort',
+      -- Rust
+      'codelldb',
+      'taplo',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
+          -- See rustaceanvim.mason for explanation
+          if server_name == 'rust_analyzer' then
+            return
+          end
           local server = servers[server_name] or {}
           -- this handles overriding only values explicitly passed
           -- by the server configuration above. useful when disabling
