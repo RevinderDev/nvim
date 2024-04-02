@@ -179,6 +179,7 @@ local function configure_layout()
       dashboard.button('SPC s g', '󰊄  [S]earch [G]rep'),
       dashboard.button('p', '  [P]lugins', ':Lazy<CR>'),
       dashboard.button('f', '  [F]ile tree', ':Neotree<CR>'),
+      dashboard.button('m', '⚒  [M]ason', ':Mason<CR>'),
     },
     position = 'center',
   }

@@ -1,3 +1,9 @@
+local function ruff_on_attach(client, bufnr)
+  if client.name == 'ruff_lsp' then
+    client.server_capabilities.hoverProvider = false
+  end
+end
+
 return { -- lsp configuration & plugins
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -17,6 +23,7 @@ return { -- lsp configuration & plugins
 
   -- See rustaceanvim.mason for explanation
   setup = {
+    ruff_lsp = ruff_on_attach,
     rust_analyzer = function()
       return true
     end,
@@ -118,6 +125,24 @@ return { -- lsp configuration & plugins
           },
         },
       },
+      ruff_lsp = {
+        keys = {
+          {
+            '<leader>co',
+            function()
+              vim.lsp.buf.code_action {
+                apply = true,
+                context = {
+                  only = { 'source.organizeImports' },
+                  diagnostics = {},
+                },
+              }
+            end,
+            desc = 'Organize Imports',
+          },
+        },
+      },
+      -- pyright = { settings = { pyright = { disableOrganizingImports = true }, python = { analysis = { ignore = { '*' } } } } },
       pyright = {},
       rust_analyzer = {},
     }
@@ -127,8 +152,8 @@ return { -- lsp configuration & plugins
     vim.list_extend(ensure_installed, {
       'stylua', -- used to format lua code
       -- Python related
-      'black',
-      'isort',
+      'ruff',
+      'ruff-lsp',
       -- Rust
       'codelldb',
       'taplo',
