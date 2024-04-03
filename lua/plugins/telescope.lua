@@ -33,6 +33,7 @@ return { -- fuzzy finder (files, lsp, etc)
 
     -- enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
+    pcall(require('telescope').load_extension, 'macros')
     pcall(require('telescope').load_extension, 'ui-select')
 
     -- see `:help telescope.builtin`
@@ -46,6 +47,7 @@ return { -- fuzzy finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[s]earch [r]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
+    vim.keymap.set('n', '<leader>sm', ':Telescope macros<CR>', { desc = 'Telescope [m]acros' })
 
     vim.keymap.set('n', '<leader>sf', function()
       builtin.find_files {
