@@ -4,6 +4,8 @@ if vim.g.neovide then
   if vim.g.os == 'Windows' then
     vim.o.guifont = 'JetBrainsMono Nerd Font:h13'
     vim.g.neovide_transparency = 0.9
+    vim.g.sqlite_clib_path = vim.env.SQLITE_DLL_PATH
+    vim.g.python3_host_prog = vim.env.NVIM_PYTHON3_VENV
   elseif vim.g.os == 'Linux' then
     vim.o.guifont = 'IosevkaTerm Nerd Font:h12'
     vim.g.neovide_transparency = 0.9

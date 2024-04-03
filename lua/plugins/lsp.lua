@@ -142,7 +142,6 @@ return { -- lsp configuration & plugins
           },
         },
       },
-      -- pyright = { settings = { pyright = { disableOrganizingImports = true }, python = { analysis = { ignore = { '*' } } } } },
       pyright = {},
       rust_analyzer = {},
     }
