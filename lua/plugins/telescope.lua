@@ -23,10 +23,18 @@ return { -- fuzzy finder (files, lsp, etc)
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
   config = function()
+    local actions = require 'telescope.actions'
     require('telescope').setup {
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
+        },
+      },
+      defaults = {
+        mappings = {
+          i = {
+            ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+          },
         },
       },
     }
