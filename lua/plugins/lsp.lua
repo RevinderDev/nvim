@@ -36,6 +36,8 @@ return { -- lsp configuration & plugins
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'lsp: ' .. desc })
         end
 
+        -- Hoever over
+        map('K', vim.lsp.buf.hover, 'Show hover')
         -- jump to the definition of the word under your cursor.
         --  this is where a variable was first declared, or where a function is defined, etc.
         --  to jump back, press <c-t>.
@@ -76,6 +78,21 @@ return { -- lsp configuration & plugins
         -- warn: this is not goto definition, this is goto declaration.
         --  for example, in c this would take you to the header
         map('gd', vim.lsp.buf.declaration, '[g]oto [d]eclaration')
+
+        -- Signature help
+        map('gs', vim.lsp.buf.signature_help, 'show [s]ignature help')
+
+        -- Line diagnostics
+        map('gl', function()
+          local float = vim.diagnostic.config().float
+
+          if float then
+            local config = type(float) == 'table' and float or {}
+            config.scope = 'line'
+
+            vim.diagnostic.open_float(config)
+          end
+        end, 'Show [l]ine diagnostic')
 
         -- the following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -166,6 +183,11 @@ return { -- lsp configuration & plugins
             return
           end
           local server = servers[server_name] or {}
+
+          server['handlers'] = {
+            ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+            ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
+          }
           -- this handles overriding only values explicitly passed
           -- by the server configuration above. useful when disabling
           -- certain features of an lsp (for example, turning off formatting for tsserver)
