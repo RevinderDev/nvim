@@ -1,9 +1,3 @@
-local function ruff_on_attach(client, bufnr)
-  if client.name == 'ruff_lsp' then
-    client.server_capabilities.hoverProvider = false
-  end
-end
-
 return { -- lsp configuration & plugins
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -23,7 +17,11 @@ return { -- lsp configuration & plugins
 
   -- See rustaceanvim.mason for explanation
   setup = {
-    ruff_lsp = ruff_on_attach,
+    ruff_lsp = function(client, _)
+      if client.name == 'ruff' then
+        client.server_capabilities.hoverProvider = false
+      end
+    end,
     rust_analyzer = function()
       return true
     end,
@@ -142,7 +140,7 @@ return { -- lsp configuration & plugins
           },
         },
       },
-      ruff_lsp = {
+      ruff = {
         keys = {
           {
             '<leader>co',
@@ -169,7 +167,6 @@ return { -- lsp configuration & plugins
       'stylua', -- used to format lua code
       -- Python related
       'ruff',
-      'ruff-lsp',
       -- Rust
       'codelldb',
       'taplo',
