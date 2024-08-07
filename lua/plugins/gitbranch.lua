@@ -12,5 +12,11 @@ return {
       desc = 'Git [B]ranch',
       mode = { 'n', 'v' },
     },
+    {
+      '<leader>ll',
+      '<cmd>Git blame<cr>',
+      desc = 'Git B[l]ame',
+      mode = { 'n', 'v' },
+    },
   },
 }
