@@ -16,16 +16,7 @@ return { -- lsp configuration & plugins
   },
 
   -- See rustaceanvim.mason for explanation
-  setup = {
-    ruff_lsp = function(client, _)
-      if client.name == 'ruff' then
-        client.server_capabilities.hoverProvider = false
-      end
-    end,
-    rust_analyzer = function()
-      return true
-    end,
-  },
+  setup = {},
   config = function()
     vim.api.nvim_create_autocmd('lspattach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -115,7 +106,7 @@ return { -- lsp configuration & plugins
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-    local servers = {
+    local ensure_installed = {
       taplo = {
         keys = {
           {
@@ -158,28 +149,15 @@ return { -- lsp configuration & plugins
         },
       },
       pyright = {},
-      rust_analyzer = {},
+      stylua = {},
+      codelldb = {},
     }
     require('mason').setup()
-
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
-      'stylua', -- used to format lua code
-      -- Python related
-      'ruff',
-      -- Rust
-      'codelldb',
-      'taplo',
-    })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
-          -- See rustaceanvim.mason for explanation
-          if server_name == 'rust_analyzer' then
-            return
-          end
-          local server = servers[server_name] or {}
+          local server = ensure_installed[server_name] or {}
 
           server['handlers'] = {
             ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
