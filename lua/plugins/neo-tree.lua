@@ -40,13 +40,20 @@ return {
           visible = true,
           hide_dotfiles = false,
           never_show = {
-            '.git',
             '.venv',
             '__pycache__',
             '.mypy_cache',
             '.pytest_cache',
             '.ruff_cache',
           },
+        },
+        components = {
+          name = function(config, node, state)
+            if node:get_depth() == 1 then
+              node.name = vim.fs.basename(vim.loop.cwd() or '')
+            end
+            return { text = node.name, highlight = 'NeoTreeFileName' }
+          end,
         },
       },
     }
