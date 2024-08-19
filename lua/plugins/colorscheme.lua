@@ -3,6 +3,10 @@ return {
   priority = 1000,
   config = function()
     vim.cmd.colorscheme 'gruvbox-baby'
+
+    -- Neotree color correction
+    vim.cmd [[hi NeoTreeNormal guibg=NONE]]
+    vim.cmd [[hi NeoTreeNormalNC guibg=NONE]]
     -- Dashboard colors
     vim.cmd [[highlight AlphaBanner guifg=#eebd35]]
     vim.cmd [[highlight AlphaHeaderLabel guifg=#E7D7AD]]
