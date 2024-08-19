@@ -66,3 +66,6 @@ vim.opt.hlsearch = true
 
 -- disable ~ when empty line
 vim.opt.fillchars:append { eob = ' ' }
+
+-- Bottom line status
+vim.opt.laststatus = 3

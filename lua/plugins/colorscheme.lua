@@ -9,5 +9,12 @@ return {
     -- Current line number color
     vim.cmd [[highlight CursorLineNR guifg=#fabd2f]]
     vim.cmd [[highlight LspInlayHint guifg=#665c54]]
+
+    -- Splitting line
+    vim.cmd [[hi WinSeparator guifg=#665c54]]
+
+    -- Noice popup
+    vim.cmd [[hi NoiceCmdlinePopupBorder guifg=#ebdbb2  ]]
+    vim.cmd [[hi NoiceCmdlineIcon guifg=#ebdbb2  ]]
   end,
 }

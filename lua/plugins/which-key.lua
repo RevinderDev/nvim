@@ -5,13 +5,14 @@ return { -- useful plugin to show you pending keybinds.
     require('which-key').setup()
 
     -- document existing key chains
-    require('which-key').register {
-      ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },
-      ['<leader>d'] = { name = '[d]ebug', _ = 'which_key_ignore' },
-      ['<leader>t'] = { name = '[t]ypes', _ = 'which_key_ignore' },
-      ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
-      ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
-      ['<leader>w'] = { name = '[w]orkspace', _ = 'which_key_ignore' },
+    require('which-key').add {
+      { '<leader>c', group = '[C]ode' },
+      { '<leader>d', group = '[D]ocument' },
+      { '<leader>r', group = '[R]ename' },
+      { '<leader>s', group = '[S]earch' },
+      { '<leader>w', group = '[W]orkspace' },
+      { '<leader>t', group = '[T]oggle' },
+      { '<leader>h', group = '[H]arpoon', mode = { 'n', 'v' } },
     }
   end,
 }

@@ -6,8 +6,26 @@ return {
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
   },
+  keys = {
+    {
+      '<C-g>',
+      function()
+        require('neo-tree.command').execute { source = 'git_status', toggle = true }
+      end,
+      desc = 'Git Explorer',
+    },
+    {
+      '<C-e>',
+      function()
+        require('neo-tree.command').execute { toggle = true, dir = vim.uv.cwd() }
+      end,
+      desc = 'Explorer NeoTree (cwd)',
+    },
+  },
+  deactivate = function()
+    vim.cmd [[Neotree close]]
+  end,
   config = function()
-    vim.keymap.set('n', '<C-e>', '<cmd>Neotree toggle<cr>')
     require('neo-tree').setup {
       popup_border_style = 'rounded',
       window = {

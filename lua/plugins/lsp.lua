@@ -26,17 +26,10 @@ return { -- lsp configuration & plugins
         end
 
         -- Hoever over
-        map('K', vim.lsp.buf.hover, 'Show hover')
-        -- jump to the definition of the word under your cursor.
-        --  this is where a variable was first declared, or where a function is defined, etc.
-        --  to jump back, press <c-t>.
+        map('m', vim.lsp.buf.hover, 'Show hover')
         map('gd', require('telescope.builtin').lsp_definitions, '[g]oto [d]efinition')
-
-        -- find references for the word under your cursor.
+        map('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
         map('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
-
-        -- jump to the implementation of the word under your cursor.
-        --  useful when your language has ways of declaring types without an actual implementation.
         map('gi', require('telescope.builtin').lsp_implementations, '[g]oto [i]mplementation')
 
         -- jump to the type of the word under your cursor.
@@ -59,14 +52,6 @@ return { -- lsp configuration & plugins
         -- execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your lsp for this to activate.
         map('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ction')
-
-        -- opens a popup that displays documentation about the word under your cursor
-        --  see `:help k` for why this keymap
-        map('m', vim.lsp.buf.hover, 'hover documentation')
-
-        -- warn: this is not goto definition, this is goto declaration.
-        --  for example, in c this would take you to the header
-        map('gd', vim.lsp.buf.declaration, '[g]oto [d]eclaration')
 
         -- Signature help
         map('gs', vim.lsp.buf.signature_help, 'show [s]ignature help')
