@@ -57,6 +57,34 @@ return { -- fuzzy finder (files, lsp, etc)
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
     vim.keymap.set('n', '<leader>sm', ':Telescope macros<CR>', { desc = 'Telescope [m]acros' })
 
+    vim.keymap.set('n', '<leader>svg', function()
+      require('telescope.builtin').live_grep {
+        prompt_title = 'Search Packages',
+        search_dirs = { './.venv' },
+        additional_args = { '--hidden', '--no-ignore-vcs' },
+      }
+    end, { desc = '[S]earch within .[v]env folder by [g]rep' })
+    vim.keymap.set('n', '<leader>svf', function()
+      builtin.find_files {
+        find_command = {
+          'rg',
+          '--files',
+          '--hidden',
+          '--glob',
+          '!.git/*',
+          '--glob',
+          '!.mypy_cache/*',
+          '--glob',
+          '!.pytest_cache/*',
+          '--glob',
+          '!__pycache__/*',
+          '--glob',
+          '.venv/**', -- Ensure to search within .venv folder
+          '--no-ignore-vcs',
+        },
+      }
+    end, { desc = '[s]earch including .[v]env [f]iles' })
+
     vim.keymap.set('n', '<leader>sf', function()
       builtin.find_files {
         find_command = {
