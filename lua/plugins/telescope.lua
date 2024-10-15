@@ -57,6 +57,20 @@ return { -- fuzzy finder (files, lsp, etc)
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
     vim.keymap.set('n', '<leader>sm', ':Telescope macros<CR>', { desc = 'Telescope [m]acros' })
 
+    vim.keymap.set('n', '<leader>scf', function()
+      require('telescope.builtin').find_files {
+        prompt_title = '[s]earch [c]url/hurl [f]iles',
+        find_command = { 'rg', '--files', '--hidden', '--no-ignore-vcs', '--glob', '*.hurl' },
+      }
+    end, { desc = '[s]earch [c]url/hurl [f]iles' })
+
+    vim.keymap.set('n', '<leader>scg', function()
+      require('telescope.builtin').live_grep {
+        prompt_title = '[s]earch within hurl/[c] files by [g]rep',
+        additional_args = { '--hidden', '--no-ignore-vcs', '--glob', '*.hurl' },
+      }
+    end, { desc = '[s]earch within [c]url/hurl files by [g]rep' })
+
     vim.keymap.set('n', '<leader>svg', function()
       require('telescope.builtin').live_grep {
         prompt_title = 'Search Packages',
