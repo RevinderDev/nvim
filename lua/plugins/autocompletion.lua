@@ -28,7 +28,6 @@ return { -- autocompletion
       },
     },
     'saadparwaiz1/cmp_luasnip',
-
     -- adds other completion capabilities.
     --  nvim-cmp does not ship with all sources by default. they are split
     --  into multiple repos for maintenance purposes.
@@ -126,6 +125,7 @@ return { -- autocompletion
       },
 
       sources = {
+        { name = 'emoji' }, -- Emojis
         { name = 'path' }, -- file paths
         { name = 'nvim_lsp', keyword_length = 3 }, -- from language server
         { name = 'nvim_lsp_signature_help' }, -- display function signatures with current parameter emphasized

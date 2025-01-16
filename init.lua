@@ -34,6 +34,9 @@ require('lazy').setup {
       -- - sd'   - [s]urround [d]elete [']quotes
       -- - sr)'  - [s]urround [r]eplace [)] [']
       require('mini.surround').setup()
+
+      -- Bracket pairs
+      require('mini.pairs').setup()
     end,
   },
 
