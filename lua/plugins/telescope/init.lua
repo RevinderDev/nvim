@@ -47,58 +47,31 @@ return { -- fuzzy finder (files, lsp, etc)
 
     -- see `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
+    local utils = require 'plugins.telescope.utils'
+
+    vim.keymap.set('n', '<leader>sg', utils.live_multigrep, { desc = '[s]earch by [g]rep' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[s]earch [k]eymaps' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[s]earch [s]elect telescope' })
-    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[s]earch current [w]ord' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[s]earch by [g]rep' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[s]earch [r]esume' })
-    vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
     vim.keymap.set('n', '<leader>sm', ':Telescope macros<CR>', { desc = 'Telescope [m]acros' })
 
-    vim.keymap.set('n', '<leader>scf', function()
-      require('telescope.builtin').find_files {
-        prompt_title = '[s]earch [c]url/hurl [f]iles',
-        find_command = { 'rg', '--files', '--hidden', '--no-ignore-vcs', '--glob', '*.hurl' },
-      }
-    end, { desc = '[s]earch [c]url/hurl [f]iles' })
-
-    vim.keymap.set('n', '<leader>scg', function()
-      require('telescope.builtin').live_grep {
-        prompt_title = '[s]earch within hurl/[c] files by [g]rep',
-        additional_args = { '--hidden', '--no-ignore-vcs', '--glob', '*.hurl' },
-      }
-    end, { desc = '[s]earch within [c]url/hurl files by [g]rep' })
-
-    vim.keymap.set('n', '<leader>svg', function()
-      require('telescope.builtin').live_grep {
-        prompt_title = 'Search Packages',
-        search_dirs = { './.venv' },
-        additional_args = { '--hidden', '--no-ignore-vcs' },
-      }
-    end, { desc = '[S]earch within .[v]env folder by [g]rep' })
-    vim.keymap.set('n', '<leader>svf', function()
+    vim.keymap.set('n', '<leader>sef', function()
       builtin.find_files {
-        find_command = {
-          'rg',
-          '--files',
-          '--hidden',
-          '--glob',
-          '!.git/*',
-          '--glob',
-          '!.mypy_cache/*',
-          '--glob',
-          '!.pytest_cache/*',
-          '--glob',
-          '!__pycache__/*',
-          '--glob',
-          '.venv/**', -- Ensure to search within .venv folder
-          '--no-ignore-vcs',
-        },
+        prompt_title = 'Find Files in Git Excluded',
+        find_command = { 'rg', '--files', '--hidden', '--no-ignore-vcs' },
+        search_dirs = { './revinder-local' },
       }
-    end, { desc = '[s]earch including .[v]env [f]iles' })
+    end, { desc = '[S]earch git [e]xcluded [f]iles' })
+
+    vim.keymap.set('n', '<leader>seg', function()
+      builtin.live_grep {
+        prompt_title = 'Grep in Git Excluded',
+        find_command = { 'rg', '--files', '--hidden', '--no-ignore-vcs' },
+        search_dirs = { './revinder-local' },
+      }
+    end, { desc = '[S]earch git [e]xcluded [g]rep' })
 
     vim.keymap.set('n', '<leader>sf', function()
       builtin.find_files {
@@ -108,17 +81,15 @@ return { -- fuzzy finder (files, lsp, etc)
           '--hidden',
           '--glob',
           '!.git/*',
-          '--glob',
-          '!.venv/*',
-          '--glob',
-          '!.mypy_cache/*',
-          '--glob',
-          '!.pytest_cache/*',
-          '--glob',
-          '!__pycache__/*',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--smart-case',
         },
       }
-    end, { desc = '[s]earch [f]iles including hidden and .gitignore, excluding .git/ and .venv/' })
+    end, { desc = '[s]earch [f]iles including hidden' })
+
     -- slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
       -- you can pass additional configuration to telescope to change theme, layout, etc.
@@ -127,15 +98,6 @@ return { -- fuzzy finder (files, lsp, etc)
         previewer = false,
       })
     end, { desc = '[/] fuzzily search in current buffer' })
-
-    -- also possible to pass additional configuration options.
-    --  see `:help telescope.builtin.live_grep()` for information about particular keys
-    vim.keymap.set('n', '<leader>s/', function()
-      builtin.live_grep {
-        grep_open_files = true,
-        prompt_title = 'live grep in open files',
-      }
-    end, { desc = '[s]earch [/] in open files' })
 
     -- shortcut for searching your neovim configuration files
     vim.keymap.set('n', '<leader>sn', function()

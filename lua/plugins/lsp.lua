@@ -136,6 +136,7 @@ return { -- lsp configuration & plugins
       pyright = {},
       stylua = {},
       codelldb = {},
+      zls = {},
     }
     require('mason').setup()
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
