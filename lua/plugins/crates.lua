@@ -2,7 +2,8 @@ return {
   'saecki/crates.nvim',
   event = { 'BufRead Cargo.toml' },
   config = function()
-    require('crates').setup()
+    require('crates').setup { popup = { autofocus = true, border = 'rounded' } }
+
     local crates = require 'crates'
 
     vim.keymap.set('n', '<leader>ct', crates.toggle, { desc = '[c]rates [t]oggle', silent = true })
