@@ -6,12 +6,12 @@
 </p>
 
 
-For more indepth information, check out [my dotfiles](https://github.com/RevinderDev/.dotfiles).
+For more in-depth information, check out [my dotfiles](https://github.com/RevinderDev/.dotfiles).
 
 ##### Windows
 
 If you are on windows, you might have issue with missing `sqlite.lua`[1] library and `python3` missing for mason [2].
-Set appropiate paths in your envs: 
+Set appropriate paths in your environments: 
 
 ```.env
 SQLITE_DLL_PATH=path/to/sqlite3.dll

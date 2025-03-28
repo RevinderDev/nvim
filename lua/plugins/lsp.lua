@@ -89,7 +89,7 @@ return { -- lsp configuration & plugins
     })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
     local ensure_installed = {
       taplo = {
@@ -111,7 +111,8 @@ return { -- lsp configuration & plugins
         settings = {
           lua = {
             completion = {
-              callsnippet = 'replace',
+              callSnipper = 'Disable',
+              keywordSnippet = 'Disable',
             },
           },
         },

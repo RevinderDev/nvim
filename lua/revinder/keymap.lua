@@ -40,3 +40,5 @@ vim.keymap.set('n', '<a-h>', '<c-w><c-h>', { desc = 'move focus to the left wind
 vim.keymap.set('n', '<a-l>', '<c-w><c-l>', { desc = 'move focus to the right window' })
 vim.keymap.set('n', '<a-j>', '<c-w><c-j>', { desc = 'move focus to the lower window' })
 vim.keymap.set('n', '<a-k>', '<c-w><c-k>', { desc = 'move focus to the upper window' })
+
+vim.keymap.set('n', '<leader>ls', '<cmd>set invspell<cr>', { desc = 'toggle spell checking' })
