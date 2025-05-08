@@ -134,7 +134,7 @@ return { -- lsp configuration & plugins
           },
         },
       },
-      pyright = {},
+      basedpyright = {},
       stylua = {},
       codelldb = {},
       zls = {},
