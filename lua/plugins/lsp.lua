@@ -91,7 +91,19 @@ return { -- lsp configuration & plugins
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
+    vim.filetype.add {
+      filename = {
+        ['docker-compose.yml'] = 'yaml.docker-compose',
+        ['docker-compose.yaml'] = 'yaml.docker-compose',
+        ['compose.yml'] = 'yaml.docker-compose',
+        ['compose.yaml'] = 'yaml.docker-compose',
+        ['docker-compose-ci.yaml'] = 'yaml.docker-compose',
+        ['docker-compose-ci.yml'] = 'yaml.docker-compose',
+      },
+    }
+
     local ensure_installed = {
+      -- Rust
       taplo = {
         keys = {
           {
@@ -107,16 +119,7 @@ return { -- lsp configuration & plugins
           },
         },
       },
-      lua_ls = {
-        settings = {
-          lua = {
-            completion = {
-              callSnipper = 'Disable',
-              keywordSnippet = 'Disable',
-            },
-          },
-        },
-      },
+      -- Python
       ruff = {
         keys = {
           {
@@ -134,13 +137,51 @@ return { -- lsp configuration & plugins
           },
         },
       },
-      basedpyright = {},
+      pyright = {},
+
+      -- Lua
+      lua_ls = {
+        settings = {
+          lua = {
+            completion = {
+              callSnipper = 'Disable',
+              keywordSnippet = 'Disable',
+            },
+          },
+        },
+      },
       stylua = {},
+
+      -- Ziglang
       codelldb = {},
       zls = {},
+
+      -- Bash
+      bashls = {},
+      shellcheck = {},
+
+      -- Dockers
+      dockerls = {},
+      docker_compose_language_service = {
+        filetypes = { 'yaml.docker-compose' },
+        -- You might also want to add these settings
+        settings = {
+          docker = {
+            compose = {
+              completion = {
+                experimental = {
+                  enabled = true,
+                },
+              },
+            },
+          },
+        },
+      },
+      hadolint = {},
     }
+    local lsp_names = vim.tbl_keys(ensure_installed)
     require('mason').setup()
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    require('mason-tool-installer').setup { ensure_installed = lsp_names }
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
