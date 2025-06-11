@@ -13,7 +13,7 @@ if vim.g.neovide then
     vim.g.sqlite_clib_path = vim.env.SQLITE_DLL_PATH
     vim.g.python3_host_prog = vim.env.NVIM_PYTHON3_VENV
   elseif vim.g.os == 'Linux' then
-    vim.o.guifont = 'DepartureMono Nerd Font Propo:h13'
+    vim.o.guifont = 'IosevkaTerm Nerd Font:h13'
   end
 
   vim.keymap.set('n', '<C-0>', function()
