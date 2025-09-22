@@ -1,6 +1,6 @@
 return { -- highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
-  build = ':tsupdate',
+  build = ':TSUpdate',
   opts = {
     ensure_installed = { 'ron', 'bash', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'python', 'rust', 'toml', 'zig', 'dockerfile' },
     -- autoinstall languages that are not installed
