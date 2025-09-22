@@ -1,6 +1,11 @@
 vim.keymap.set('n', '<esc>', '<cmd>nohlsearch<cr>')
-vim.keymap.set('n', '<C-s>', ':w<cr>') -- save
-vim.keymap.set('n', '<C-S-q>', ':q<cr>')
+vim.keymap.set('n', '<C-q>', vim.cmd.Bdelete) -- quit current buffer
+vim.keymap.set('n', '<C-S-s>', vim.cmd.write) -- save
+vim.keymap.set('n', '<C-s>', function()
+  vim.cmd.Format()
+  vim.cmd.write()
+end)
+vim.keymap.set('n', '<C-S-q>', vim.cmd.qall)
 -- diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'go to previous [d]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'go to next [d]iagnostic message' })

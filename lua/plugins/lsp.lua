@@ -180,7 +180,7 @@ return { -- lsp configuration & plugins
       hadolint = {},
     }
     local lsp_names = vim.tbl_keys(ensure_installed)
-    require('mason').setup()
+    require('mason').setup { PATH = 'append' }
     require('mason-tool-installer').setup { ensure_installed = lsp_names }
     require('mason-lspconfig').setup {
       handlers = {

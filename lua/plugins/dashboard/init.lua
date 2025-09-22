@@ -248,7 +248,6 @@ return {
     configure_layout()
 
     -- If it's the last buffer go to Dashboard
-    vim.keymap.set('n', '<C-q>', ':Bdelete<cr>') -- quit current buffer
     local alpha_on_empty = vim.api.nvim_create_augroup('alpha_on_empty', { clear = true })
     vim.api.nvim_create_autocmd('User', {
       pattern = 'BDeletePost*',
