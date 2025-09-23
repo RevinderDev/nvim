@@ -16,6 +16,8 @@ return { -- lsp configuration & plugins
   },
 
   -- See rustaceanvim.mason for explanation
+  --
+  event = 'VeryLazy',
   setup = {},
   config = function()
     vim.api.nvim_create_autocmd('lspattach', {

@@ -1,5 +1,6 @@
 return {
   'ecthelionvi/NeoComposer.nvim',
+  event = 'VeryLazy',
   dependencies = { 'kkharji/sqlite.lua' },
   opts = {
     colors = {

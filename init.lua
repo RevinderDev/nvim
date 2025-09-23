@@ -21,6 +21,7 @@ require('lazy').setup {
   { 'folke/todo-comments.nvim', event = 'vimenter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = true } },
   {
     'echasnovski/mini.nvim',
+    event = 'VeryLazy',
     config = function()
       -- better around/inside textobjects
       -- examples:
