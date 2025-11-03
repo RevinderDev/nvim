@@ -1,37 +1,36 @@
 return {
   'mrcjkb/rustaceanvim',
-  version = '^5', -- Recommended
   lazy = true,
   ft = { 'rust' },
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    {
-      'lvimuser/lsp-inlayhints.nvim',
-      opts = {
-        inlay_hints = {
-          parameter_hints = {
-            show = true,
-            prefix = '<- ',
-            separator = ', ',
-            remove_colon_start = true,
-            remove_colon_end = true,
-          },
-          type_hints = {
-            -- type and other hints
-            show = true,
-            prefix = '-> ',
-            separator = ', ',
-            remove_colon_start = true,
-            remove_colon_end = false,
-          },
-        },
-      },
-    },
-  },
+  -- dependencies = {
+  --   'nvim-lua/plenary.nvim',
+  --   {
+  --     'lvimuser/lsp-inlayhints.nvim',
+  --     opts = {
+  --       inlay_hints = {
+  --         parameter_hints = {
+  --           show = true,
+  --           prefix = '<- ',
+  --           separator = ', ',
+  --           remove_colon_start = true,
+  --           remove_colon_end = true,
+  --         },
+  --         type_hints = {
+  --           -- type and other hints
+  --           show = true,
+  --           prefix = '-> ',
+  --           separator = ', ',
+  --           remove_colon_start = true,
+  --           remove_colon_end = false,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   opts = {
     server = {
       on_attach = function(client, bufnr)
-        require('lsp-inlayhints').on_attach(client, bufnr)
+        -- require('lsp-inlayhints').on_attach(client, bufnr)
         vim.keymap.set('n', '<leader>cR', function()
           vim.cmd.RustLsp 'codeAction'
         end, { desc = 'Code Action', buffer = bufnr })
