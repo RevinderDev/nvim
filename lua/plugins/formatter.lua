@@ -19,7 +19,7 @@ return { -- autoformat
       rust_analyzer = { 'rustfmt' },
       python = function(bufnr)
         if require('conform').get_formatter_info('ruff', bufnr).available then
-          return { 'ruff' }
+          return { 'ruff_format', 'ruff_organize_imports', 'ruff_fix' }
         else
           return { 'isort', 'black' }
         end
