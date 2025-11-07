@@ -6,7 +6,9 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_padding_top = 35
   vim.g.neovide_opacity = 0.9
-  vim.g.neovide_scale_factor = 1.0
+  vim.g.neovide_scale_factor = 1.2
+
+  vim.g.neovide_padding_left = 5
 
   if vim.g.os == 'Windows' then
     vim.o.guifont = 'JetBrainsMono Nerd Font:h13'
