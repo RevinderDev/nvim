@@ -179,7 +179,6 @@ return {
           },
         },
       },
-      rust_analyzer = { enabled = false },
       -- Python
       ruff = {
         keys = {
