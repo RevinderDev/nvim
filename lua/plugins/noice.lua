@@ -3,6 +3,7 @@ return {
   event = 'VeryLazy',
   opts = {
     lsp = {
+      hover = { silent = true },
       override = {
         -- override the default lsp markdown formatter with Noice
         ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
