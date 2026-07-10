@@ -11,7 +11,7 @@ if vim.g.neovide then
   vim.g.neovide_padding_left = 5
 
   if vim.g.os == 'Windows' then
-    vim.o.guifont = 'JetBrainsMono Nerd Font:h13'
+    vim.o.guifont = 'Iosevka Nerd Font:h11'
     vim.g.sqlite_clib_path = vim.env.SQLITE_DLL_PATH
     vim.g.python3_host_prog = vim.env.NVIM_PYTHON3_VENV
   elseif vim.g.os == 'Linux' then
