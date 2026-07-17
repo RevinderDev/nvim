@@ -57,19 +57,48 @@ return { -- fuzzy finder (files, lsp, etc)
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] find existing buffers' })
     vim.keymap.set('n', '<leader>sm', ':Telescope macros<CR>', { desc = 'Telescope [m]acros' })
 
+    -- Helper function to dynamically build ripgrep arguments based on .ignore presence
+    local function get_rg_command(picker_type)
+      local has_ignore = vim.fn.filereadable '.ignore' == 1
+      local cmd = {}
+
+      if picker_type == 'find_files' then
+        cmd = { 'rg', '--files', '--hidden' }
+      else
+        cmd = {
+          'rg',
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--smart-case',
+          '--hidden',
+        }
+      end
+
+      if has_ignore then
+        -- Bypasses .gitignore, but strictly obeys your local .ignore file
+        table.insert(cmd, '--no-ignore-vcs')
+      else
+        -- No .ignore file found: search absolutely everywhere (including .git, target, etc.)
+        table.insert(cmd, '--no-ignore')
+      end
+
+      return cmd
+    end
+
     vim.keymap.set('n', '<leader>sef', function()
-      builtin.find_files {
-        prompt_title = 'Find Files in Git Excluded',
-        find_command = { 'rg', '--files', '--hidden', '--no-ignore-vcs' },
-        search_dirs = { './revinder-local' },
+      require('telescope.builtin').find_files {
+        prompt_title = 'Find Files (Conditional Ignore)',
+        find_command = get_rg_command 'find_files',
       }
     end, { desc = '[S]earch git [e]xcluded [f]iles' })
 
     vim.keymap.set('n', '<leader>seg', function()
-      builtin.live_grep {
-        prompt_title = 'Grep in Git Excluded',
-        find_command = { 'rg', '--files', '--hidden', '--no-ignore-vcs' },
-        search_dirs = { './revinder-local' },
+      require('telescope.builtin').live_grep {
+        prompt_title = 'Grep (Conditional Ignore)',
+        vimgrep_arguments = get_rg_command 'live_grep',
       }
     end, { desc = '[S]earch git [e]xcluded [g]rep' })
 
